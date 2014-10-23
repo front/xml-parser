@@ -69,7 +69,7 @@ function parse(xml) {
 
   function tag() {
     debug('tag %j', xml);
-    var m = match(/^<([\w+:.]+)\s*/);
+    var m = match(/^<([\w\-:.]+)\s*/);
     if (!m) return;
 
     // name
@@ -103,7 +103,7 @@ function parse(xml) {
     }
 
     // closing
-    match(/^<\/[\w:.]+>\s*/);
+    match(/^<\/[\w\-:.]+>\s*/);
 
     return node;
   }
@@ -125,7 +125,7 @@ function parse(xml) {
 
   function attribute() {
     debug('attribute %j', xml);
-    var m = match(/([\w:-]+)\s*=\s*("[^"]*"|'[^']*'|\w+)\s*/);
+    var m = match(/([\w\-:]+)\s*=\s*("[^"]*"|'[^']*'|\w+)\s*/);
     if (!m) return;
     return { name: m[1], value: strip(m[2]) }
   }
